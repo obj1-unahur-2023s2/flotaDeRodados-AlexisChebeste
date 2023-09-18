@@ -1,0 +1,62 @@
+const corsita = new Corsa(color = "Rojo")
+const dos = new Corsa(color = "Rojo")
+
+const dep = new Dependencia()
+
+class Corsa{
+	
+	const color 
+	
+	method capacidad() = 4
+	method velocidadMaxima() = 150
+	method peso() = 1300
+	method color() = color
+}
+
+
+
+class Dependencia {
+	
+	const rodados = []
+	
+	const cantidadDeEmpleados = 20
+	
+	method agregarAFlota(rodado){
+		rodados.add(rodado)
+	}
+	
+	method quitarDeFlota(rodado){
+		rodados.remove(rodado)
+	}
+	
+	method pesoTotalFlota(){
+		return rodados.sum({n => n.peso()})		
+	}
+	
+	method estaBienEquipada(){
+		return rodados.size() == 3 and rodados.all({n => n.velocidadMaxima() >= 100})		
+	}
+	
+	method capacidadTotalEnColor(color){
+		const flotaColor = rodados.filter({n => n.color() == color}) 
+	
+		return flotaColor.sum({n => n.capacidad()})
+		
+	}
+	
+	method colorDelRodadoMasRapido(){
+		const rapido = rodados.max({n => n.velocidadMaxima()})
+		return rapido.color()
+	}
+	
+	method capacidadFaltante(){
+		return cantidadDeEmpleados - self.capacidadDisponible()
+	}
+	
+	method capacidadDisponible() = rodados.sum{n => n.capacidad()}
+	
+	method esGrande(){
+		return cantidadDeEmpleados >= 40 and  rodados.size() >= 5
+	}
+	
+}
