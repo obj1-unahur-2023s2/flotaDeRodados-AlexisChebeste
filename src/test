@@ -1,0 +1,10 @@
+import objects.*
+
+test "capacidadFaltante"{
+	
+	dep.agregarAFlota(corsita)
+	dep.agregarAFlota(dos)
+	
+	assert.equals(12, dep.capacidadFaltante())
+	
+}
